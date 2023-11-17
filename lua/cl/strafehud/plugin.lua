@@ -79,7 +79,7 @@ AddListener('JPLUA_EVENT_HUD', function(events)
     wasInAir = self.isInAir
 
     -- Current UPS
-    if bit32.band(strafeHUD, 1) ~= 0 then
+    if strafeHUD & 1 ~= 0 then
         strafehud.text.text = string.format('%06.2f', speed)
         strafehud.text.colour = {0.567, 0.685, 1.0, 1.0}
         strafehud.text:Draw(x, y)
@@ -87,7 +87,7 @@ AddListener('JPLUA_EVENT_HUD', function(events)
     end
 
     -- Highest UPS in last 2000ms
-    if bit32.band(strafeHUD, 2) ~= 0 then
+    if strafeHUD & 2 ~= 0 then
         strafehud.text.text = string.format('%06.2f', bestSpeed.speed)
         strafehud.text.colour = {0.42525, 0.51375, 0.75, 1.0}
         strafehud.text:Draw(x, y)
@@ -95,7 +95,7 @@ AddListener('JPLUA_EVENT_HUD', function(events)
     end
 
     -- Highest UPS on ground in last 2000ms
-    if bit32.band(strafeHUD, 4) ~= 0 then
+    if strafeHUD & 4 ~= 0 then
         strafehud.text.text = string.format('%06.2f', groundSpeed.speed)
         strafehud.text.colour = {0.42525, 0.51375, 0.75, 1.0}
         strafehud.text:Draw(x, y)
@@ -103,7 +103,7 @@ AddListener('JPLUA_EVENT_HUD', function(events)
     end
 
     -- jump measure
-    if bit32.band(strafeHUD, 8) ~= 0 then
+    if strafeHUD & 8 ~= 0 then
         strafehud.text.text = string.format('%06.2f, %i', jumpHigh - jumpLow, jumpEndTime - jumpStartTime)
         strafehud.text.colour = {0.75, 0.51375, 0.75, 1.0}
         strafehud.text:Draw(x, y)
@@ -111,7 +111,7 @@ AddListener('JPLUA_EVENT_HUD', function(events)
     end
 
     -- Viewangles
-    if bit32.band(strafeHUD, 16) ~= 0 then
+    if strafeHUD & 16 ~= 0 then
         strafehud.text.text = string.format('%06.3f / %06.3f', angles.yaw, -angles.pitch)
         strafehud.text.colour = {1.0, 0.5, 0.0, 1.0}
         strafehud.text:Draw(x, y)
@@ -119,7 +119,7 @@ AddListener('JPLUA_EVENT_HUD', function(events)
     end
 
     -- Position
-    if bit32.band(strafeHUD, 32) ~= 0 then
+    if strafeHUD & 32 ~= 0 then
         strafehud.text.text = string.format('%06.3f', position.x)
         strafehud.text.colour = {0.6, 0.6, 0.6, 1.0}
         strafehud.text:Draw(x, y)

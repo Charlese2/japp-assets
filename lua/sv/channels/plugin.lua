@@ -16,7 +16,7 @@ local japp_channelSize = CreateCvar('japp_channelSize', '0', CvarFlags.ARCHIVE) 
 chans.channels = {}
 chans.selectedChan = {} -- map of ply.id -> Channel.name
 
-local function IsLegacyClient(ply) return bit32.band(ply.supportFlags, CSF.CHAT_FILTERS) ~= CSF.CHAT_FILTERS end
+local function IsLegacyClient(ply) return ply.supportFlags & CSF.CHAT_FILTERS ~= CSF.CHAT_FILTERS end
 
 -- lazy constructor
 local function GetChannel(name, password)

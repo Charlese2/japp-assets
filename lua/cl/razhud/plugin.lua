@@ -110,7 +110,7 @@ AddListener('JPLUA_EVENT_HUD', function(events)
     local saberStyle = self.saberStyle
     local team = self.team
 
-    if (bit32.band(style, HudEvent.Stats) == HudEvent.Stats) then
+    if (style & HudEvent.Stats == HudEvent.Stats) then
         local barWidth = 213.33333
         local barHeight = 24.0
         local background = {0.0, 0.0, 0.0, 0.175}
@@ -175,10 +175,10 @@ AddListener('JPLUA_EVENT_HUD', function(events)
         end
 
         ::fail::
-        events = bit32.bor(events, HudEvent.Stats)
+        events = events | HudEvent.Stats
     end
 
-    if (bit32.band(style, HudEvent.Flags) == HudEvent.Flags) then
+    if (style & HudEvent.Flags == HudEvent.Flags) then
         local scores1, scores2 = GetScores()
         local iconSize = 48.0
         local leftX = (ScreenWidth / 2.0) -- center screen
@@ -190,7 +190,7 @@ AddListener('JPLUA_EVENT_HUD', function(events)
         + (iconSize / 2.0) -- -> half icon size
 
         local y = ScreenHeight - iconSize;
-        if bit32.band(style, HudEvent.Stats) == HudEvent.Stats then y = y - 48.0 end
+        if style & HudEvent.Stats == HudEvent.Stats then y = y - 48.0 end
         local faded = {0.25, 0.25, 0.25, 0.75}
         -- local defer = { 1.0, 1.0, 1.0, 0.8 }
         local ourFlag = (team == Team.Red) and razhud.shaders.redFlag or razhud.shaders.blueFlag
@@ -243,10 +243,10 @@ AddListener('JPLUA_EVENT_HUD', function(events)
         razhud.text:Draw(rightX + ((iconSize * widthRatioCoef) / 2.0), y - razhud.text.height)
 
         ::fail::
-        events = bit32.bor(events, HudEvent.Flags)
+        events = events | HudEvent.Flags
     end
 
-    if (bit32.band(style, HudEvent.Scores) == HudEvent.Scores) then
+    if (style & HudEvent.Scores == HudEvent.Scores) then
         local barWidth = 213.33333
         local barHeight = 24.0
         local kills = self.score
@@ -292,7 +292,7 @@ AddListener('JPLUA_EVENT_HUD', function(events)
         end
 
         ::fail::
-        events = bit32.bor(events, HudEvent.Scores)
+        events = events | HudEvent.Scores
     end
 
     return events

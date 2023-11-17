@@ -84,8 +84,8 @@ is = function(check, expected) return function(...) return check(table.unpack(ar
 -- operator table.
 -- @see also python's operator module.
 operator = {
-    mod = math.mod,
-    pow = math.pow,
+    mod = function(n, m) return n % m end,
+    pow = function(n, m) return n ^ m end,
     add = function(n, m) return n + m end,
     sub = function(n, m) return n - m end,
     mul = function(n, m) return n * m end,

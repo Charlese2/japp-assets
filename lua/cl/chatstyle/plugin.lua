@@ -79,7 +79,7 @@ end
 
 AddListener('JPLUA_EVENT_CHATMSGSEND', function(msg, mode, target)
     local enabled = cg_chatStyle:GetInteger()
-    if #msg == 0 or bit32.band(enabled, bit32.lshift(1, mode)) == 0 then return msg end
+    if #msg == 0 or enabled & (1 << mode) == 0 then return msg end
 
     local currentStyle = chatstyle.styles[chatstyle.styles['current']]
 
